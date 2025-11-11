@@ -5,6 +5,7 @@ package handler
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 
 	"github.com/sshehrozali/basic-service/internal/types"
@@ -21,7 +22,12 @@ func CreateUserHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		// Parse request body into CreateUserRequest struct
 		var req types.CreateUserRequest
 		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-			httpx.ErrorCtx(r.Context(), w, err)	// error parsing request body
+			httpx.ErrorCtx(r.Context(), w, errors.New("server error while parsing request body"))	// error parsing request body
+			return
+		}
+
+		if req.Email == "" || req.Name == "" {
+			httpx.ErrorCtx(r.Context(), w, errors.New("request invalid or not correct")) // missing required fields
 			return
 		}
 
