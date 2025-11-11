@@ -4,8 +4,9 @@
 package handler
 
 import (
-	"net/http"
 	"encoding/json"
+	"net/http"
+
 	"github.com/sshehrozali/basic-service/internal/types"
 
 	"github.com/sshehrozali/basic-service/internal/logic"
@@ -28,8 +29,12 @@ func CreateUserHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 
 		if err != nil {
 			httpx.ErrorCtx(r.Context(), w, err)
-		} else {
-			httpx.Ok(w)
 		}
+
+		httpx.OkJsonCtx(r.Context(), w, &types.CreateUserResponse{
+			Name:    req.Name,
+			Email:   req.Email,
+			Message: "User created successfully",
+		})
 	}
 }

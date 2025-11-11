@@ -8,8 +8,8 @@ type CreateUserRequest struct {
 	Email  string    `json:"email"`
 }
 
-type UserResponse struct {
-	Id   int64  `json:"id"`
+type CreateUserResponse struct {
 	Name string `json:"name"`
-	Age  int    `json:"age"`
+	Email  string    `json:"email"`
+	Message string `json:"message"`
 }
