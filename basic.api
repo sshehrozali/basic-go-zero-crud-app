@@ -1,27 +1,27 @@
 type (
-    UserRequest {
-        Id   int64  `json:"id"`
-        Name string `json:"name"`
-        Age  int    `json:"age"`
-    }
-
-    UserResponse {
-        Id   int64  `json:"id"`
-        Name string `json:"name"`
-        Age  int    `json:"age"`
-    }
+	UserRequest {
+		Id   int64  `json:"id"`
+		Name string `json:"name"`
+		Age  int    `json:"age"`
+	}
+	UserResponse {
+		Id   int64  `json:"id"`
+		Name string `json:"name"`
+		Age  int    `json:"age"`
+	}
 )
 
 service user-api {
-    @handler CreateUser
-    post /user
+	@handler CreateUser
+	post /user
 
-    @handler GetUser
-    get /user/:id
+	@handler GetUser
+	get /user/:id
 
-    @handler UpdateUser
-    put /user/:id
+	@handler UpdateUser
+	put /user/:id
 
-    @handler DeleteUser
-    delete /user/:id
+	@handler DeleteUser
+	delete /user/:id
 }
+
