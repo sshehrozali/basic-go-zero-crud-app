@@ -26,6 +26,6 @@ func NewCreateUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Create
 
 func (l *CreateUserLogic) CreateUser() error {
 	// todo: add your logic here and delete this line
-
+	
 	return nil
 }
