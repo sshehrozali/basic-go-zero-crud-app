@@ -7,6 +7,9 @@ import (
 	"context"
 
 	"github.com/sshehrozali/basic-service/internal/svc"
+	"github.com/sshehrozali/basic-service/internal/model"
+	"github.com/sshehrozali/basic-service/internal/types"
+
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -24,8 +27,17 @@ func NewCreateUserLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Create
 	}
 }
 
-func (l *CreateUserLogic) CreateUser() error {
-	// todo: add your logic here and delete this line
-	
-	return nil
+func (l *CreateUserLogic) CreateUser(req types.CreateUserRequest) (string, error) {
+
+	newUser := &model.User{
+		Name: req.Name,
+		Email: req.Email,
+	} 
+
+	err := l.svcCtx.DB.Create(newUser).Error
+	if err != nil {
+		return "error while saving new user to database", err
+	}
+
+	return "new user created successfully", nil
 }

@@ -3,10 +3,9 @@
 
 package types
 
-type UserRequest struct {
-	Id   int64  `json:"id"`
+type CreateUserRequest struct {
 	Name string `json:"name"`
-	Age  int    `json:"age"`
+	Email  string    `json:"email"`
 }
 
 type UserResponse struct {
